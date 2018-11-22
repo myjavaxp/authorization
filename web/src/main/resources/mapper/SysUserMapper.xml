@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.web.dao.SysUserMapper">
+    <resultMap id="BaseResultMap" type="com.yibo.web.domain.SysUser">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="enabled" jdbcType="BIT" property="enabled"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="non_locked" jdbcType="BIT" property="nonLocked"/>
+        <result column="non_expired" jdbcType="BIT" property="nonExpired"/>
+        <result column="salt" jdbcType="VARCHAR" property="salt"/>
+        <result column="credentials_non_expired" jdbcType="BIT" property="credentialsNonExpired"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,
+        username,
+        password,
+        enabled,
+        nickname,
+        email,
+        tel,
+        non_locked,
+        non_expired,
+        salt,
+        credentials_non_expired
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from sys_user
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.yibo.web.domain.SysUser">
+        insert into sys_user (id, username, password,
+                              enabled, nickname, email,
+                              tel, non_locked, non_expired,
+                              salt, credentials_non_expired)
+        values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{enabled,jdbcType=BIT}, #{nickname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+                #{tel,jdbcType=VARCHAR}, #{nonLocked,jdbcType=BIT}, #{nonExpired,jdbcType=BIT},
+                #{salt,jdbcType=VARCHAR}, #{credentialsNonExpired,jdbcType=BIT})
+    </insert>
+    <insert id="insertSelective" parameterType="com.yibo.web.domain.SysUser">
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="enabled != null">
+                enabled,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="nonLocked != null">
+                non_locked,
+            </if>
+            <if test="nonExpired != null">
+                non_expired,
+            </if>
+            <if test="salt != null">
+                salt,
+            </if>
+            <if test="credentialsNonExpired != null">
+                credentials_non_expired,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="enabled != null">
+                #{enabled,jdbcType=BIT},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="nonLocked != null">
+                #{nonLocked,jdbcType=BIT},
+            </if>
+            <if test="nonExpired != null">
+                #{nonExpired,jdbcType=BIT},
+            </if>
+            <if test="salt != null">
+                #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="credentialsNonExpired != null">
+                #{credentialsNonExpired,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.yibo.web.domain.SysUser">
+        update sys_user
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled,jdbcType=BIT},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="nonLocked != null">
+                non_locked = #{nonLocked,jdbcType=BIT},
+            </if>
+            <if test="nonExpired != null">
+                non_expired = #{nonExpired,jdbcType=BIT},
+            </if>
+            <if test="salt != null">
+                salt = #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="credentialsNonExpired != null">
+                credentials_non_expired = #{credentialsNonExpired,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.yibo.web.domain.SysUser">
+        update sys_user
+        set username                = #{username,jdbcType=VARCHAR},
+            password                = #{password,jdbcType=VARCHAR},
+            enabled                 = #{enabled,jdbcType=BIT},
+            nickname                = #{nickname,jdbcType=VARCHAR},
+            email                   = #{email,jdbcType=VARCHAR},
+            tel                     = #{tel,jdbcType=VARCHAR},
+            non_locked              = #{nonLocked,jdbcType=BIT},
+            non_expired             = #{nonExpired,jdbcType=BIT},
+            salt                    = #{salt,jdbcType=VARCHAR},
+            credentials_non_expired = #{credentialsNonExpired,jdbcType=BIT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="getSysUserByUsername" resultMap="BaseResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where username = #{username,jdbcType=VARCHAR}
+    </select>
+</mapper>

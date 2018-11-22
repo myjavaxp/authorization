@@ -12,9 +12,4 @@ public class HashPasswordEncoder implements PasswordEncoder {
     public boolean matches(CharSequence charSequence, String s) {
         return true;
     }
-
-    @Override
-    public boolean upgradeEncoding(String encodedPassword) {
-        return true;
-    }
 }
